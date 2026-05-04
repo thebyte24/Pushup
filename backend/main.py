@@ -23,7 +23,7 @@ from mediapipe.tasks.python import vision as mp_vision
 # Model
 # ---------------------------------------------------------------------------
 
-MODEL_PATH = "../pose_landmarker_full.task"
+MODEL_PATH = os.environ.get("MODEL_PATH", "pose_landmarker_full.task")
 MODEL_URL = (
     "https://storage.googleapis.com/mediapipe-models/"
     "pose_landmarker/pose_landmarker_full/float16/latest/"
@@ -49,7 +49,7 @@ WRIST_ALIGN_TOL  = 80
 R_EAR=8; R_SHOULDER=12; R_ELBOW=14; R_WRIST=16; R_HIP=24; R_ANKLE=28
 L_EAR=7; L_SHOULDER=11; L_ELBOW=13; L_WRIST=15; L_HIP=23; L_ANKLE=27
 
-HISTORY_FILE = "../workout_history.csv"
+HISTORY_FILE = os.environ.get("HISTORY_FILE", "workout_history.csv")
 CSV_HEADERS  = ["Date", "Total_Reps", "Duration_Seconds"]
 
 # ---------------------------------------------------------------------------
