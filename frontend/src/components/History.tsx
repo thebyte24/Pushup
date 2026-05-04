@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+const BACKEND = import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
+
 interface Session {
   Date: string;
   Total_Reps: string;
@@ -11,7 +13,7 @@ export default function History() {
   const [loading, setLoading] = useState(true);
 
   const fetchHistory = () => {
-    fetch("http://localhost:8000/history")
+    fetch(`${BACKEND}/history`)
       .then((r) => r.json())
       .then((data) => { setSessions(data); setLoading(false); })
       .catch(() => setLoading(false));
@@ -21,7 +23,7 @@ export default function History() {
 
   const deleteSession = (date: string) => {
     if (!window.confirm(`Delete session from ${date}?`)) return;
-    fetch(`http://localhost:8000/history/${encodeURIComponent(date)}`, { method: "DELETE" })
+    fetch(`${BACKEND}/history/${encodeURIComponent(date)}`, { method: "DELETE" })
       .then(() => fetchHistory());
   };
 

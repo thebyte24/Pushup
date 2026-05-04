@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState, useCallback } from "react";
 
-const WS_URL = "ws://localhost:8000/ws/pushup";
+const BACKEND = import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
+const WS_URL = BACKEND.replace("https://", "wss://").replace("http://", "ws://") + "/ws/pushup";
 const FRAME_INTERVAL_MS = 100; // send 10 frames/sec to backend
 
 interface Checks {
